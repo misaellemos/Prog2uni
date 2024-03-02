@@ -93,9 +93,9 @@ void atualizar_tam(SortingVets *Vet){
     if(Vet->tam < 10)
          Vet->tam++;
 	else if(Vet->tam == 10) 
-        Vet->tam += 9990;
+        Vet->tam += 4990;
 	else 
-        Vet->tam += 10000;
+        Vet->tam += 5000;
 }
 
 void tempo_exec(struct timeval start, struct timeval end, int tam, char opcao){
