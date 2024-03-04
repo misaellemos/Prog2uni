@@ -8,28 +8,27 @@ int getMax(int vet[], int tam){
     return max;
 }
 
-void countSort(int vet[], int tam, int p_digit){  // p_digit == place digit
-    int i, count[10] = { 0 }; // só vamos ter que ordenar até o dígito 9 com counting sort 
+void countSort(int vet[], int tam, int p_digit){
+    int i, count[10] = { 0 };
  
-    // using counting sort on the place digit 
-    for(i = 0; i < tam; i++)     // Store count of occurrences in count[]
+    for(i = 0; i < tam; i++)
         count[(vet[i] / p_digit) % 10]++;
  
-    for(i = 1; i < 10; i++)    // Change count[i] so that count[i] now contains actual position of this digit in output[]
+    for(i = 1; i < 10; i++)   
         count[i] += count[i - 1];
     
     int v_ordenado[tam];
-    for(i = tam - 1; i >= 0; i--){    // Build the output array
+    for(i = tam - 1; i >= 0; i--){ 
         v_ordenado[ count[(vet[i] / p_digit) % 10] - 1 ] = vet[i];
         count[(vet[i] / p_digit) % 10]--;
     }
     
-    for (i = 0; i < tam; i++)  // trocando por aritimética de ponteiros para não ter que mudar endereço de memória
+    for (i = 0; i < tam; i++)
         vet[i] = v_ordenado[i]; 
 }
  
 void radixsort(int vet[], int tam){
-    int max = getMax(vet, tam);    // Find the maximum number to know number of digits
+    int max = getMax(vet, tam);
  
     for (int i = 1; max / i > 0; i *= 10)
         countSort(vet, tam, i);
